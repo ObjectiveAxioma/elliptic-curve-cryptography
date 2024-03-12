@@ -1,5 +1,4 @@
 from ecFiniteField import *
-from babyStepGiantStep import *
 import random
 
 
