@@ -49,9 +49,21 @@ def decryptMessage(m):
         return "Please resend"
 
 
+# Returns 1 when n and m are coprime, 0 otherwise. Used to ensure that k does not divide #E(Fq).
+def isCoprime(n, m):
+    i = 2
+    while i < n and i < m:
+        if n % i == 0 and m % i == 0:
+            return 0
+        i+=1
+    return 1
+
+
 # Alice encrypts her message for Bob to recieve and decrypt.
 def Alice(M):
     k = random.randint(1, order-1)
+    while not isCoprime(k, order):
+        k = random.randint(1, order-1)
     M1 = k*P
     M2 = M + k*B
 
